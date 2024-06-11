@@ -1,11 +1,14 @@
-import { Button } from "@nextui-org/react";
+import GalleryCard from "@/components/GalleryCard";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <p>home</p>
-      <Button color="primary">click me</Button>
+      {/* 
+      list of gallery cards with shadow
+      on click a dynamically rendred page opens
+      */}
+      <GalleryCard />
     </div>
   );
 };

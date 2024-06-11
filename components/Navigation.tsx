@@ -1,6 +1,5 @@
-// TODO - only the set active index needs to use client, find clever way to do this
-
 "use client";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import Link from "next/link";
 import {
@@ -16,27 +15,36 @@ import navigationConfig, { NavigationLink } from "@/config/navigationConfig";
 import Logo from "@/components/Logo";
 
 const Navigation = () => {
-  const [activeIndex, setActiveIndex] = useState<number>(-1); // Explicitly define the type for activeIndex
-
-  const handleItemClick = (index: number) => {
-    // Explicitly define the type for index
-    setActiveIndex(index);
-  };
+  const pathname = usePathname();
 
   return (
-    <Navbar isBordered className="justify-start ">
+    <Navbar
+      classNames={{
+        item: [
+          "flex",
+          "relative",
+          "h-full",
+          "items-center",
+          "data-[active=true]:after:content-['']",
+          "data-[active=true]:after:absolute",
+          "data-[active=true]:after:bottom-0",
+          "data-[active=true]:after:left-0",
+          "data-[active=true]:after:right-0",
+          "data-[active=true]:after:h-[2px]",
+          "data-[active=true]:after:rounded-[2px]",
+          "data-[active=true]:after:bg-primary",
+        ],
+      }}
+      isBordered
+      className="justify-start "
+    >
       <NavbarBrand className="flex-grow-0">
         <Logo />
         <p className="font-bold text-inherit">Art Map-It</p>
       </NavbarBrand>
       <NavbarContent className="sm:flex flex-wrap items-center  gap-4 pl-20">
         {navigationConfig.map((link: NavigationLink, index: number) => (
-          <NavbarItem
-            className="hover:underline"
-            key={index}
-            isActive={activeIndex === index}
-            onClick={() => handleItemClick(index)}
-          >
+          <NavbarItem key={index} isActive={pathname === link.href}>
             <Link color="foreground" href={link.href}>
               {link.label}
             </Link>
