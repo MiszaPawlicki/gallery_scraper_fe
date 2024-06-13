@@ -3,11 +3,11 @@ import React from "react";
 
 const ExhibitionFilters = () => {
   return (
-    <div className="space-y-4 h-[39.5rem]">
+    <div className="space-y-4 h-[39.5rem] pt-4">
       <div>
         <Input
           classNames={{
-            base: "max-w-full sm:max-w-[17.75rem] h-10",
+            base: "max-w-full sm:max-w-[20rem] h-10",
             mainWrapper: "h-full",
             input: "text-small",
             inputWrapper:
@@ -28,7 +28,7 @@ const ExhibitionFilters = () => {
       <div>
         <DatePicker
           label="When will you attend the exhibition?"
-          className="max-w-[17.75rem]"
+          className="max-w-[20rem]"
         />
       </div>
     </div>

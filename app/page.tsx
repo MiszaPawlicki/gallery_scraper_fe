@@ -4,7 +4,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div>
+    <main>
       {/* 
       list of gallery cards with shadow
       on click a dynamically rendred page opens
@@ -14,13 +14,12 @@ const page = () => {
         <div className="w-1/4  pl-10 ">
           <ExhibitionFilters />
         </div>
+
         <div className="w-3/4">
-          <div className="pl-20">
-            <ExhibitionCardList />
-          </div>
+          <ExhibitionCardList />
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

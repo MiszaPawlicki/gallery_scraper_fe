@@ -21,7 +21,7 @@ const ExhibitionCard: React.FC<Props> = ({
   onButtonClick = () => {},
 }) => {
   return (
-    <Card className="border-none bg-background/60 dark:bg-default-100/50 max-w-2xl max-h-96 p-4">
+    <Card className="border-none bg-background/60 dark:bg-default-100/50 max-w-5xl max-h-96 p-4">
       <CardBody>
         <div className="grid grid-cols-12 gap-4 items-center">
           <div className="col-span-12 md:col-span-3">

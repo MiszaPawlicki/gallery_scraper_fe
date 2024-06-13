@@ -4,7 +4,7 @@ import ExhibitionCard from "./ExhibitionCard";
 
 const ExhibitionCardList = () => {
   return (
-    <ScrollShadow hideScrollBar className="h-[39.5rem]">
+    <ScrollShadow hideScrollBar className="h-[98%] pl-6 pt-4">
       <ExhibitionCard />
       <ExhibitionCard />
       <ExhibitionCard />
