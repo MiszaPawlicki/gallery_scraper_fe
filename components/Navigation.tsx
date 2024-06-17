@@ -40,7 +40,6 @@ const Navigation = () => {
     >
       <NavbarBrand className="flex-grow-0">
         <Logo />
-        <p className="font-bold text-inherit">Will Wants Art</p>
       </NavbarBrand>
       <NavbarContent className="sm:flex flex-wrap items-center  gap-4 pl-20">
         {navigationConfig.map((link: NavigationLink, index: number) => (
