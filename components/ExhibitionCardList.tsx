@@ -1,13 +1,28 @@
 "use client";
-import { ScrollShadow, Spinner } from "@nextui-org/react";
-import React from "react";
+import { ScrollShadow, Spinner, useDisclosure } from "@nextui-org/react";
+import React, { useEffect, useState } from "react";
 import ExhibitionCard from "./ExhibitionCard";
-import { useEffect, useState } from "react";
+import ExhibitionModal from "./ExhibitionModal";
 
-const ExhibitionCardList = () => {
-  const [data, setData] = useState(null);
+const ExhibitionCardList: React.FC = () => {
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedExhibition, setSelectedExhibition] = useState<{
+    title?: string;
+    gallery?: string;
+    imageUrl?: string;
+    date?: string;
+    price?: string;
+    description?: string;
+  }>({});
+
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const handleCardButtonClick = (exhibition: typeof selectedExhibition) => {
+    setSelectedExhibition(exhibition);
+    onOpen();
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,8 +34,7 @@ const ExhibitionCardList = () => {
         const result = await response.json();
         setData(result);
       } catch (err) {
-        //setError(err.message);
-        console.log("error");
+        setError("Failed to fetch exhibitions.");
       } finally {
         setLoading(false);
       }
@@ -29,28 +43,51 @@ const ExhibitionCardList = () => {
     fetchData();
   }, []);
 
-  if (loading) return <Spinner size="lg" className=" pl-96 pt-80" />;
+  if (loading)
+    return (
+      <div className="flex items-center justify-center h-full">
+        <Spinner size="lg" />
+      </div>
+    );
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <ScrollShadow hideScrollBar className="h-[98%] pl-6 pt-4">
-      {data.map((exhibition) => (
-        <ExhibitionCard
-          imageUrl={exhibition["image"]}
-          title={exhibition["title"]}
-          gallery={exhibition["gallery"]}
-          price={
-            exhibition["min_price"] === exhibition["max_price"]
-              ? `${exhibition["min_price"]}`
-              : `${exhibition["min_price"]} - ${exhibition["max_price"]}`
-          }
-        />
-      ))}
-      {/* <ExhibitionCard />
-      <ExhibitionCard />
-      <ExhibitionCard />
-      <ExhibitionCard /> */}
-    </ScrollShadow>
+    <>
+      <ScrollShadow hideScrollBar className="h-[98%] pl-6 pt-4">
+        {data.map((exhibition, index) => (
+          <ExhibitionCard
+            key={index}
+            imageUrl={exhibition["image"]}
+            title={exhibition["title"]}
+            gallery={exhibition["gallery"]}
+            price={exhibition["price"]}
+            date={exhibition["date"]}
+            exhibitionUrl={exhibition["url"]}
+            onButtonClick={() =>
+              handleCardButtonClick({
+                title: exhibition["title"],
+                gallery: exhibition["gallery"],
+                imageUrl: exhibition["image"],
+                date: exhibition["date"],
+                price: exhibition["price"],
+                description: exhibition["description"],
+              })
+            }
+          />
+        ))}
+      </ScrollShadow>
+
+      <ExhibitionModal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        title={selectedExhibition["title"]}
+        gallery={selectedExhibition["gallery"]}
+        imageUrl={selectedExhibition["imageUrl"]}
+        date={selectedExhibition["date"]}
+        price={selectedExhibition["price"]}
+        description={selectedExhibition["description"]}
+      />
+    </>
   );
 };
 

@@ -3,27 +3,28 @@
 import React from "react";
 import { Card, CardHeader, CardBody, Button, Image } from "@nextui-org/react";
 
-interface Props {
+interface ExhibitionCardProps {
   title?: string;
   gallery?: string;
   imageUrl?: string;
   date?: string;
   price?: string;
+  exhibitionUrl?: string;
   onButtonClick?: () => void;
 }
 
-const ExhibitionCard: React.FC<Props> = ({
+const ExhibitionCard: React.FC<ExhibitionCardProps> = ({
   title = "Untitled Exhibition",
   gallery = "Unknown Gallery",
   imageUrl = "https://via.placeholder.com/300",
   date = "Date not specified",
   price = "Free",
-  onButtonClick = () => {},
+  onButtonClick,
 }) => {
   return (
     <Card className="border-none bg-background/60 dark:bg-default-100/50 max-w-5xl p-4">
       <CardBody>
-        <div className="grid grid-cols-12 gap-4 items-center">
+        <div className="grid grid-cols-12 gap-4 items-center min-h-48">
           <div className="col-span-12 md:col-span-3">
             <Image
               alt="Paintings from the exhibition"

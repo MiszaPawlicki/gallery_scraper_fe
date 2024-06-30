@@ -5,13 +5,8 @@ import React from "react";
 const page = () => {
   return (
     <main>
-      {/* 
-      list of gallery cards with shadow
-      on click a dynamically rendred page opens
-      */}
-
       <div className="flex h-[39.5rem]">
-        <div className="w-1/4  pl-10 ">
+        <div className="w-1/4 pl-10">
           <ExhibitionFilters />
         </div>
 
