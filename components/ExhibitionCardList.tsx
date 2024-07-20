@@ -12,9 +12,11 @@ const ExhibitionCardList: React.FC = () => {
     title?: string;
     gallery?: string;
     imageUrl?: string;
-    date?: string;
+    start_date?: string;
+    end_date?: string;
     price?: string;
     description?: string;
+    exhibitionUrl?: string;
   }>({});
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -53,7 +55,7 @@ const ExhibitionCardList: React.FC = () => {
 
   return (
     <>
-      <ScrollShadow hideScrollBar className="h-[98%] pl-6 pt-4">
+      <ScrollShadow hideScrollBar className="h-[100%] pl-6 pt-4">
         {data.map((exhibition, index) => (
           <ExhibitionCard
             key={index}
@@ -61,16 +63,19 @@ const ExhibitionCardList: React.FC = () => {
             title={exhibition["title"]}
             gallery={exhibition["gallery"]}
             price={exhibition["price"]}
-            date={exhibition["date"]}
+            start_date={exhibition["start_date"]}
+            end_date={exhibition["end_date"]}
             exhibitionUrl={exhibition["url"]}
             onButtonClick={() =>
               handleCardButtonClick({
                 title: exhibition["title"],
                 gallery: exhibition["gallery"],
                 imageUrl: exhibition["image"],
-                date: exhibition["date"],
+                start_date: exhibition["start_date"],
+                end_date: exhibition["end_date"],
                 price: exhibition["price"],
                 description: exhibition["description"],
+                exhibitionUrl: exhibition["url"],
               })
             }
           />
@@ -83,9 +88,11 @@ const ExhibitionCardList: React.FC = () => {
         title={selectedExhibition["title"]}
         gallery={selectedExhibition["gallery"]}
         imageUrl={selectedExhibition["imageUrl"]}
-        date={selectedExhibition["date"]}
+        start_date={selectedExhibition["start_date"]}
+        end_date={selectedExhibition["end_date"]}
         price={selectedExhibition["price"]}
         description={selectedExhibition["description"]}
+        exhibitionUrl={selectedExhibition["exhibitionUrl"]}
       />
     </>
   );

@@ -5,7 +5,7 @@ import React from "react";
 const page = () => {
   return (
     <main>
-      <div className="flex h-[39.5rem]">
+      <div className="flex h-[40rem]">
         <div className="w-1/4 pl-10">
           <ExhibitionFilters />
         </div>

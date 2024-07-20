@@ -7,7 +7,8 @@ interface ExhibitionCardProps {
   title?: string;
   gallery?: string;
   imageUrl?: string;
-  date?: string;
+  start_date?: string;
+  end_date?: string;
   price?: string;
   exhibitionUrl?: string;
   onButtonClick?: () => void;
@@ -17,8 +18,10 @@ const ExhibitionCard: React.FC<ExhibitionCardProps> = ({
   title = "Untitled Exhibition",
   gallery = "Unknown Gallery",
   imageUrl = "https://via.placeholder.com/300",
-  date = "Date not specified",
+  start_date = "Start date not specified",
+  end_date = "End date not specified",
   price = "Free",
+  exhibitionUrl = "google.com",
   onButtonClick,
 }) => {
   return (
@@ -40,7 +43,9 @@ const ExhibitionCard: React.FC<ExhibitionCardProps> = ({
               <div className="flex flex-col space-y-1">
                 <p className="text-lg">{title}</p>
                 <p className="text-md text-default-500">{gallery}</p>
-                <p className="text-small text-default-500">{date}</p>
+                <p className="text-small text-default-500">
+                  {start_date} - {end_date}
+                </p>
                 <p className="text-lg font-bold">{price}</p>
               </div>
             </CardHeader>
