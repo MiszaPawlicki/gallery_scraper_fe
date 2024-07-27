@@ -34,7 +34,17 @@ const ExhibitionCardList: React.FC = () => {
           throw new Error(`Error: ${response.status}`);
         }
         const result = await response.json();
-        setData(result);
+
+        // Sort exhibitions by start_date
+        const sortedResult = result.sort(
+          (
+            a: { start_date: string | number | Date },
+            b: { start_date: string | number | Date }
+          ) =>
+            new Date(b.start_date).getTime() - new Date(a.start_date).getTime()
+        );
+
+        setData(sortedResult);
       } catch (err) {
         setError("Failed to fetch exhibitions.");
       } finally {

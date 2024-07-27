@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Card, CardHeader, CardBody, Button, Image } from "@nextui-org/react";
+import { format, parseISO } from "date-fns";
 
 interface ExhibitionCardProps {
   title?: string;
@@ -24,6 +25,19 @@ const ExhibitionCard: React.FC<ExhibitionCardProps> = ({
   exhibitionUrl = "google.com",
   onButtonClick,
 }) => {
+  const formattedStartDate = start_date
+    ? format(parseISO(start_date), "PP")
+    : "Start date not specified";
+  const formattedEndDate = end_date
+    ? format(parseISO(end_date), "PP")
+    : "End date not specified";
+
+  // Logic to display one date if start_date and end_date are the same
+  const displayDate =
+    start_date === end_date
+      ? formattedStartDate
+      : `${formattedStartDate} - ${formattedEndDate}`;
+
   return (
     <Card className="border-none bg-background/60 dark:bg-default-100/50 max-w-5xl p-4">
       <CardBody>
@@ -43,9 +57,7 @@ const ExhibitionCard: React.FC<ExhibitionCardProps> = ({
               <div className="flex flex-col space-y-1">
                 <p className="text-lg">{title}</p>
                 <p className="text-md text-default-500">{gallery}</p>
-                <p className="text-small text-default-500">
-                  {start_date} - {end_date}
-                </p>
+                <p className="text-small text-default-500">{displayDate}</p>
                 <p className="text-lg font-bold">{price}</p>
               </div>
             </CardHeader>
