@@ -6,7 +6,7 @@ import { format, parseISO } from "date-fns";
 
 interface ExhibitionCardProps {
   title?: string;
-  gallery?: string;
+  location?: string;
   imageUrl?: string;
   start_date?: string;
   end_date?: string;
@@ -17,7 +17,7 @@ interface ExhibitionCardProps {
 
 const ExhibitionCard: React.FC<ExhibitionCardProps> = ({
   title = "Untitled Exhibition",
-  gallery = "Unknown Gallery",
+  location = "Unknown location",
   imageUrl = "https://via.placeholder.com/300",
   start_date = "Start date not specified",
   end_date = "End date not specified",
@@ -56,7 +56,7 @@ const ExhibitionCard: React.FC<ExhibitionCardProps> = ({
             <CardHeader className="p-0">
               <div className="flex flex-col space-y-1">
                 <p className="text-lg">{title}</p>
-                <p className="text-md text-default-500">{gallery}</p>
+                <p className="text-md text-default-500">{location}</p>
                 <p className="text-small text-default-500">{displayDate}</p>
                 <p className="text-lg font-bold">{price}</p>
               </div>

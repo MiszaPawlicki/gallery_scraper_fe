@@ -11,7 +11,7 @@ import {
 
 interface ExhibitionModalProps {
   title?: string;
-  gallery?: string;
+  location?: string;
   imageUrl?: string;
   start_date?: string;
   end_date?: string;
@@ -24,7 +24,7 @@ interface ExhibitionModalProps {
 
 const ExhibitionModal: React.FC<ExhibitionModalProps> = ({
   title,
-  gallery,
+  location,
   imageUrl,
   start_date,
   end_date,
@@ -72,7 +72,7 @@ const ExhibitionModal: React.FC<ExhibitionModalProps> = ({
                 )}
                 <div className="w-2/3">
                   <p>
-                    <strong>Gallery:</strong> {gallery}
+                    <strong>location:</strong> {location}
                   </p>
                   <p>
                     <strong>Date:</strong> {start_date} - {end_date}

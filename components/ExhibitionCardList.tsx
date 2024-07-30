@@ -10,7 +10,7 @@ const ExhibitionCardList: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedExhibition, setSelectedExhibition] = useState<{
     title?: string;
-    gallery?: string;
+    location?: string;
     imageUrl?: string;
     start_date?: string;
     end_date?: string;
@@ -71,7 +71,7 @@ const ExhibitionCardList: React.FC = () => {
             key={index}
             imageUrl={exhibition["image"]}
             title={exhibition["title"]}
-            gallery={exhibition["gallery"]}
+            location={exhibition["location"]}
             price={exhibition["price"]}
             start_date={exhibition["start_date"]}
             end_date={exhibition["end_date"]}
@@ -79,7 +79,7 @@ const ExhibitionCardList: React.FC = () => {
             onButtonClick={() =>
               handleCardButtonClick({
                 title: exhibition["title"],
-                gallery: exhibition["gallery"],
+                location: exhibition["location"],
                 imageUrl: exhibition["image"],
                 start_date: exhibition["start_date"],
                 end_date: exhibition["end_date"],
@@ -96,7 +96,7 @@ const ExhibitionCardList: React.FC = () => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         title={selectedExhibition["title"]}
-        gallery={selectedExhibition["gallery"]}
+        location={selectedExhibition["location"]}
         imageUrl={selectedExhibition["imageUrl"]}
         start_date={selectedExhibition["start_date"]}
         end_date={selectedExhibition["end_date"]}
