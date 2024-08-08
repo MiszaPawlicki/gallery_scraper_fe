@@ -1,11 +1,36 @@
-import { DatePicker, Input } from "@nextui-org/react";
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import { DatePicker, Input, Slider } from "@nextui-org/react";
+import { DateValue } from "@react-types/calendar";
 
-const ExhibitionFilters = () => {
+interface ExhibitionFiltersProps {
+  onSearchChange: (value: string) => void;
+  onDateChange: (value: DateValue | null) => void;
+}
+
+const ExhibitionFilters: React.FC<ExhibitionFiltersProps> = ({
+  onSearchChange,
+  onDateChange,
+}) => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [selectedDate, setSelectedDate] = useState<DateValue | null>(null);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    onSearchChange(e.target.value);
+  };
+
+  const handleDateChange = (date: DateValue | null) => {
+    setSelectedDate(date);
+    onDateChange(date);
+  };
+
   return (
     <div className="space-y-4 h-[39.5rem] pt-4">
       <div>
         <Input
+          value={searchTerm}
+          onChange={handleSearchChange}
           classNames={{
             base: "max-w-full sm:max-w-[20rem] h-10",
             mainWrapper: "h-full",
@@ -28,6 +53,18 @@ const ExhibitionFilters = () => {
       <div>
         <DatePicker
           label="When will you attend the exhibition?"
+          className="max-w-[20rem]"
+          value={selectedDate}
+          onChange={handleDateChange}
+        />
+      </div>
+      <div>
+        <Slider
+          label="Price (£)"
+          step={1}
+          maxValue={30}
+          minValue={0}
+          defaultValue={30}
           className="max-w-[20rem]"
         />
       </div>
